@@ -25,7 +25,9 @@ namespace SignalR.api.Classes
 
                 logger.LogInformation($"It's working {nameof(ServerTimeNotification)} {dateTime} ");
 
-                await context.Clients.All.ReceiveNotification($"Server Time = {dateTime}"); 
+                await context.Clients.
+                    User("90d4cb5d-72ae-434d-8dd0-e768709558de")
+                    .ReceiveNotification($"Server Time = {dateTime}"); 
             }
 
         }

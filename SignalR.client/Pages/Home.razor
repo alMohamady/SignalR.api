@@ -32,7 +32,9 @@ From Server to clint >
     protected override async Task OnInitializedAsync()
     {
         _hubConnection = new HubConnectionBuilder()
-             .WithUrl("https://localhost:44368/notifications").Build();
+             .WithUrl("https://localhost:44368/notifications",
+              o => o.AccessTokenProvider = () => Task.FromResult<string?>("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjkwZDRjYjVkLTcyYWUtNDM0ZC04ZGQwLWU3Njg3MDk1NThkZSIsInN1YiI6IjkwZDRjYjVkLTcyYWUtNDM0ZC04ZGQwLWU3Njg3MDk1NThkZSIsImp0aSI6IjkzOWRiYjcyIiwiYXVkIjpbImh0dHA6Ly9sb2NhbGhvc3Q6NTc0MTgvIiwiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNjgiLCJodHRwOi8vbG9jYWxob3N0OjUxMjgiLCJodHRwczovL2xvY2FsaG9zdDo3MjM2Il0sIm5iZiI6MTc0NDMwNDcyNywiZXhwIjoxNzUyMTY3MTI3LCJpYXQiOjE3NDQzMDQ3MjgsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMifQ.bUZhvFdUk-eHiJdiUt9S9QYPpDa6ysBDaECnGfSXq38")
+         ).Build();
 
         _hubConnection.On<string>("ReceiveNotification", msg =>
         {
