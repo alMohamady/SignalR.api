@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.SignalR.Client
+@implements IAsyncDisposable
 
 <PageTitle>Home</PageTitle>
 
@@ -19,6 +20,14 @@ From Server to clint >
 {
     private HubConnection? _hubConnection;
     private readonly List<string> _messages = new();
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_hubConnection is not null)
+        {
+            await _hubConnection.DisposeAsync();
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {

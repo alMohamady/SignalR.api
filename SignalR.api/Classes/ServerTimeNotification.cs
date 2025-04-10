@@ -11,7 +11,7 @@ namespace SignalR.api.Classes
             this.context = context;
         }
 
-        private static TimeSpan period = TimeSpan.FromSeconds(10);
+        private static TimeSpan period = TimeSpan.FromSeconds(5);
         private readonly ILogger<ServerTimeNotification> logger;
         private readonly IHubContext<NotificationHub, INotifationClient> context;
 
